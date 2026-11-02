@@ -1,14 +1,14 @@
 /* ============================================================
-   ИКОНКИ (Solid) для капчи
+   ИКОНКИ (Unslop style, 1.5px stroke)
    ============================================================ */
 const ICONS = {
-    shield: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1db954"><path d="M12 2L4 5v6c0 5.55 3.84 10.74 8 11 4.16-.26 8-5.45 8-11V5l-8-3zm-1.4 14.5L7 12.9l1.4-1.4 2.2 2.2 4.6-4.6 1.4 1.4-5.9 6z"/></svg>`,
-    lightning: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#bfff00"><path d="M13 2L3 14h7v8l10-12h-7V2z"/></svg>`,
-    globe: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1db954"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
-    lock: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1db954"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>`,
-    key: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1db954"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>`,
-    wifi: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1db954"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" fill="#bfff00"/></svg>`,
-    eye: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1db954"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>`
+    shield: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    lightning: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+    globe: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    lock: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+    key: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>`,
+    wifi: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`,
+    eye: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`
 };
 
 const NAMES = {
@@ -99,16 +99,13 @@ function handlePick(card, key) {
 function showSuccess() {
     resultCircle.innerHTML = `
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="44" fill="none" stroke="#1db954" stroke-width="4"/>
-            <path class="check-path" d="M30 52 L 44 66 L 72 36"
-                fill="none" stroke="#bfff00" stroke-width="6"
-                stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="50" cy="50" r="44" fill="none" stroke="#22c55e" stroke-width="2"/>
+            <path d="M30 52 L 44 66 L 72 36" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>`;
     resultText.textContent = 'Проверка пройдена';
-    resultText.style.color = '#1db954';
+    resultText.style.color = '#22c55e';
     restartBtn.style.display = 'none';
     overlay.classList.add('show');
-    targetName.style.color = '#1db954';
 
     setTimeout(() => {
         document.getElementById('captcha-screen').classList.remove('active');
@@ -119,16 +116,11 @@ function showSuccess() {
 function showFailure() {
     resultCircle.innerHTML = `
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="44" fill="none" stroke="#d15468" stroke-width="4"/>
-            <path class="cross-path" d="M34 34 L 66 66"
-                fill="none" stroke="#d15468" stroke-width="6" stroke-linecap="round"/>
-            <path class="cross-path" d="M66 34 L 34 66"
-                fill="none" stroke="#d15468" stroke-width="6" stroke-linecap="round"
-                style="transition-delay:0.3s"/>
+            <circle cx="50" cy="50" r="44" fill="none" stroke="#ef4444" stroke-width="2"/>
+            <path d="M34 34 L 66 66M66 34 L 34 66" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
         </svg>`;
     resultText.textContent = 'Доступ закрыт';
-    resultText.style.color = '#d15468';
-    targetName.style.color = '#d15468';
+    resultText.style.color = '#ef4444';
     restartBtn.style.display = 'inline-block';
     overlay.classList.add('show');
 }
@@ -162,7 +154,7 @@ const apps = {
         name: 'V2rayNG',
         download: 'https://github.com/2dust/v2rayNG/releases/latest', 
         import: `v2rayng://install-config?url=${SUB_URL}`,
-        note: 'Советуем v2rayNG_universal.apk'
+        note: 'Рекомендуется v2rayNG_universal.apk'
     },
     v2raytun: {
         name: 'V2rayTun',
@@ -190,7 +182,6 @@ function goToStep(step, app = null) {
         document.getElementById('step-2-title').textContent = `Скачайте ${data.name}`;
         
         const downloadBtn = document.getElementById('download-link');
-        
         downloadBtn.removeAttribute('download');
         downloadBtn.href = data.download;
         
@@ -222,11 +213,9 @@ function copyLink() {
         navigator.clipboard.writeText(input.value).then(() => {
             const btn = document.getElementById('copy-btn');
             const originalText = btn.textContent;
-            btn.textContent = '✓ Готово';
-            btn.style.color = 'var(--brand-green)';
+            btn.textContent = 'Скопировано';
             setTimeout(() => {
                 btn.textContent = originalText;
-                btn.style.color = 'var(--brand-green)';
             }, 2000);
         });
     } catch (err) {
