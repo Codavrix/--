@@ -1,153 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Omnivex | Управление подпиской</title>
-    
-    <meta property="og:title" content="Omnivex | Управление подпиской">
-    <meta property="og:description" content="VPN совместно с Codavrix. Скорость и стабильность 24/7.">
-    <meta property="og:type" content="website">
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0e0c">
+  <meta name="description" content="Omnivex — подключение к VPN за несколько простых шагов.">
+  <meta property="og:title" content="Omnivex — подключение">
+  <meta property="og:description" content="Выберите приложение и подключите Omnivex за пару минут.">
+  <title>Omnivex — подключение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="container">
-        
-        <!-- ЭКРАН 1: КАПЧА -->
-        <section id="captcha-screen" class="screen active">
-            <div class="captcha-box" id="captchaBox">
-                <p class="captcha-title">Выберите и нажмите на</p>
-                <p class="captcha-target" id="targetName">Щит</p>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Omnivex — главная">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>omni<span class="brand-accent">vex</span></span>
+      </a>
+      <a class="top-link" href="https://t.me/OmnivexVPN" target="_blank" rel="noopener">Telegram <span aria-hidden="true">↗</span></a>
+    </header>
 
-                <div class="grid" id="grid"></div>
+    <section class="hero">
+      <div class="eyebrow"><span class="status-dot"></span> OMNIVEX CONNECTION</div>
+      <h1>Интернет.<br><span>Без лишнего.</span></h1>
+      <p class="hero-copy">Подключение к Omnivex займёт всего пару минут. Выберите приложение, установите его и добавьте подписку.</p>
+      <div class="hero-meta"><span class="meta-line"></span><span>ПРОСТО · БЫСТРО · УДОБНО</span></div>
+    </section>
 
-                <div class="attempts" id="attempts">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="hint" id="hint">У вас 3 попытки</div>
+    <section class="setup" aria-label="Настройка подключения">
+      <div class="progress-head">
+        <div><span class="section-kicker">НАСТРОЙКА</span><h2>Начнём подключение</h2></div>
+        <span class="step-counter" id="step-counter">01 <i>/ 03</i></span>
+      </div>
+      <div class="progress-track"><span id="progress-fill"></span></div>
 
-                <div class="overlay" id="overlay">
-                    <div class="result-circle" id="resultCircle"></div>
-                    <div class="result-text" id="resultText"></div>
-                    <button class="restart" id="restartBtn" style="display:none">Попробовать снова</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ЭКРАН 2: САЙТ -->
-        <div id="main-content" class="hidden-content">
-            <header class="hero">
-                <div class="logo-wrapper">
-                    <img src="logo.png" alt="Omnivex Logo" class="logo" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='flex';">
-                    <div class="logo-fallback" style="display:none;">O</div>
-                </div>
-                
-                <h1>Omnivex</h1>
-                
-                <!-- Текст исправлен на "совместно с" -->
-                <p class="description">
-                    VPN совместно с Codavrix. Работает для разных задач. Ты получаешь скорость без просадок и стабильность 24/7.
-                </p>
-                
-                <p class="subtitle">Выберите приложение для подключения</p>
-            </header>
-
-            <!-- Шаг 1: Выбор клиента -->
-            <section id="step-1" class="step active">
-                <div class="card-grid">
-                    <div class="app-card" onclick="goToStep(2, 'happ')">
-                        <span class="badge">Рекомендуем</span>
-                        <div class="app-icon">
-                            <img src="happ.png" alt="Happ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text happ-fallback" style="display:none;">H</span>
-                        </div>
-                        <h3>Happ</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'incy')">
-                        <div class="app-icon">
-                            <img src="incy.png" alt="Incy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text incy-fallback" style="display:none;">I</span>
-                        </div>
-                        <h3>Incy</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'v2rayng')">
-                        <span class="badge">Рекомендуем</span>
-                        <div class="app-icon">
-                            <img src="v2rayng.png" alt="V2rayNG" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text v2rayng-fallback" style="display:none;">V</span>
-                        </div>
-                        <h3>V2rayNG</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'v2raytun')">
-                        <div class="app-icon">
-                            <img src="v2raytun.png" alt="V2rayTun" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text v2raytun-fallback" style="display:none;">T</span>
-                        </div>
-                        <h3>V2rayTun</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'hiddify')">
-                        <div class="app-icon">
-                            <img src="hiddify.png" alt="Hiddify" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text hiddify-fallback" style="display:none;">H</span>
-                        </div>
-                        <h3>Hiddify</h3>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Шаг 2: Скачивание -->
-            <section id="step-2" class="step">
-                <button class="back-btn" onclick="goToStep(1)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                    <span>Назад</span>
-                </button>
-                <div class="content-box">
-                    <h2 id="step-2-title">Скачайте приложение</h2>
-                    <p class="desc">Установи клиент на устройство.</p>
-                    
-                    <a href="#" id="download-link" target="_blank" rel="noopener" class="btn btn-primary">Скачать</a>
-                    
-                    <p id="step-2-note" style="display: none; color: var(--text-muted); font-size: 13px; margin-top: 8px; margin-bottom: 0;"></p>
-                    
-                    <button onclick="goToStep(3)" class="btn btn-secondary mt-24">Далее</button>
-                </div>
-            </section>
-
-            <!-- Шаг 3: Импорт -->
-            <section id="step-3" class="step">
-                <button class="back-btn" onclick="goToStep(2, currentApp)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                    <span>Назад</span>
-                </button>
-                <div class="content-box">
-                    <h2>Импорт подписки</h2>
-                    <p class="desc">Нажми кнопку. Конфигурация добавится автоматически.</p>
-                    <a href="#" id="import-link" class="btn btn-primary">Импортировать</a>
-                    
-                    <div class="manual-copy mt-24">
-                        <p class="small-text">Если кнопка не сработала, скопируй ссылку вручную:</p>
-                        <div class="copy-box">
-                            <input type="text" id="sub-url" value="https://clck.ru/3Wnqdy" readonly>
-                            <button onclick="copyLink()" id="copy-btn">Копировать</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <footer>
-                <a href="https://t.me/OmnivexVPN" target="_blank" rel="noopener" class="tg-link">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Наш Telegram-канал
-                </a>
-            </footer>
+      <section class="step active" id="step-1">
+        <div class="step-heading"><span class="step-number">01</span><div><h3>Выберите приложение</h3><p>Выберите клиент, который хотите использовать.</p></div></div>
+        <div class="app-grid">
+          <button class="app-card featured" type="button" data-app="happ">
+            <span class="recommended">Рекомендуем</span><span class="app-icon"><img src="happ.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>H</b></span>
+            <span class="app-info"><strong>Happ</strong><small>Простой старт</small></span><span class="card-arrow">↗</span>
+          </button>
+          <button class="app-card" type="button" data-app="incy">
+            <span class="app-icon"><img src="incy.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>I</b></span>
+            <span class="app-info"><strong>Incy</strong><small>Для Android</small></span><span class="card-arrow">↗</span>
+          </button>
+          <button class="app-card" type="button" data-app="v2rayng">
+            <span class="app-icon"><img src="v2rayng.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>V</b></span>
+            <span class="app-info"><strong>V2rayNG</strong><small>Гибкие настройки</small></span><span class="card-arrow">↗</span>
+          </button>
+          <button class="app-card" type="button" data-app="v2raytun">
+            <span class="app-icon"><img src="v2raytun.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>T</b></span>
+            <span class="app-info"><strong>V2rayTun</strong><small>Альтернативный клиент</small></span><span class="card-arrow">↗</span>
+          </button>
+          <button class="app-card" type="button" data-app="hiddify">
+            <span class="app-icon"><img src="hiddify.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>H</b></span>
+            <span class="app-info"><strong>Hiddify</strong><small>Универсальный клиент</small></span><span class="card-arrow">↗</span>
+          </button>
         </div>
-    </main>
-    <script src="script.js"></script>
+      </section>
+
+      <section class="step" id="step-2">
+        <button class="back-button" type="button" data-back="1">← <span>Назад к приложениям</span></button>
+        <div class="instruction-card">
+          <div class="instruction-icon" id="selected-icon">H</div>
+          <span class="section-kicker">ШАГ 02</span>
+          <h3 id="download-title">Установите Happ</h3>
+          <p>Скачайте приложение на устройство. После установки вернитесь сюда и продолжите настройку.</p>
+          <a class="button button-primary" id="download-link" href="#" target="_blank" rel="noopener">Скачать приложение <span>↗</span></a>
+          <button class="button button-quiet" type="button" data-next="3">Приложение установлено <span>→</span></button>
+          <p class="download-note" id="download-note" hidden></p>
+        </div>
+      </section>
+
+      <section class="step" id="step-3">
+        <button class="back-button" type="button" data-back="2">← <span>Назад</span></button>
+        <div class="instruction-card">
+          <div class="instruction-icon">↗</div>
+          <span class="section-kicker">ШАГ 03</span>
+          <h3>Добавьте подписку</h3>
+          <p>Нажмите кнопку ниже. Если приложение не открылось, скопируйте ссылку и добавьте её вручную.</p>
+          <a class="button button-primary" id="import-link" href="#">Открыть в приложении <span>↗</span></a>
+          <div class="copy-area">
+            <label for="sub-url">ССЫЛКА НА ПОДПИСКУ</label>
+            <div class="copy-row"><input id="sub-url" type="text" value="https://clck.ru/3Wnqdy" readonly><button id="copy-btn" type="button">Копировать</button></div>
+            <span class="copy-feedback" id="copy-feedback" aria-live="polite"></span>
+          </div>
+          <div class="success-note"><span>✓</span><p>Готово! После импорта откройте приложение и включите подключение.</p></div>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer"><span>© OMNIVEX</span><a href="https://t.me/OmnivexVPN" target="_blank" rel="noopener">Поддержка в Telegram ↗</a><span class="footer-tag">BY CODAVRIX</span></footer>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
