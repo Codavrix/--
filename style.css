@@ -1,152 +1,179 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Omnivex | Управление подпиской</title>
+:root {
+    --bg: #070e09;
+    --surface: #121a15;
+    --surface-hover: #1a261f;
+    --border: rgba(255, 255, 255, 0.1);
+    --text: #ffffff;
+    --text-muted: #a3b8a9; /* Более светлый серый для контраста */
+    --accent: #1db954;
+    --neon-lime: #bfff00;
+    --danger: #ef4444;
     
-    <meta property="og:title" content="Omnivex | Управление подпиской">
-    <meta property="og:description" content="VPN от Codavrix. Скорость и стабильность 24/7.">
-    <meta property="og:type" content="website">
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <main class="container">
-        
-        <!-- ЭКРАН 1: КАПЧА -->
-        <section id="captcha-screen" class="screen active">
-            <div class="captcha-box" id="captchaBox">
-                <p class="captcha-title">Выберите и нажмите на</p>
-                <p class="captcha-target" id="targetName">Щит</p>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
 
-                <div class="grid" id="grid"></div>
+body {
+    font-family: 'Space Grotesk', sans-serif; /* Новый шрифт */
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
 
-                <div class="attempts" id="attempts">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <div class="hint" id="hint">У вас 3 попытки</div>
+.container {
+    width: 100%;
+    max-width: 480px; /* Чуть шире для комфорта */
+    margin: 0 auto;
+    padding: 40px 24px; /* Больше отступов */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-                <div class="overlay" id="overlay">
-                    <div class="result-circle" id="resultCircle"></div>
-                    <div class="result-text" id="resultText"></div>
-                    <button class="restart" id="restartBtn" style="display:none">Попробовать снова</button>
-                </div>
-            </div>
-        </section>
+.screen { display: none; width: 100%; }
+.screen.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; }
+.hidden-content { display: none; width: 100%; }
+.hidden-content.show { display: block; animation: fadeIn 0.3s ease-out; }
 
-        <!-- ЭКРАН 2: САЙТ -->
-        <div id="main-content" class="hidden-content">
-            <header class="hero">
-                <div class="logo-wrapper">
-                    <img src="logo.png" alt="Omnivex Logo" class="logo" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='flex';">
-                    <div class="logo-fallback" style="display:none;">O</div>
-                </div>
-                
-                <h1>Omnivex</h1>
-                
-                <p class="description">
-                    VPN от Codavrix. Работает для разных задач. Ты получаешь скорость без просадок и стабильность 24/7.
-                </p>
-                
-                <p class="subtitle">Выберите приложение для подключения</p>
-            </header>
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-            <!-- Шаг 1: Выбор клиента -->
-            <section id="step-1" class="step active">
-                <div class="card-grid">
-                    <div class="app-card" onclick="goToStep(2, 'happ')">
-                        <span class="badge">Рекомендуем</span>
-                        <div class="app-icon">
-                            <img src="happ.png" alt="Happ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text happ-fallback" style="display:none;">H</span>
-                        </div>
-                        <h3>Happ</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'incy')">
-                        <div class="app-icon">
-                            <img src="incy.png" alt="Incy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text incy-fallback" style="display:none;">I</span>
-                        </div>
-                        <h3>Incy</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'v2rayng')">
-                        <span class="badge">Рекомендуем</span>
-                        <div class="app-icon">
-                            <img src="v2rayng.png" alt="V2rayNG" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text v2rayng-fallback" style="display:none;">V</span>
-                        </div>
-                        <h3>V2rayNG</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'v2raytun')">
-                        <div class="app-icon">
-                            <img src="v2raytun.png" alt="V2rayTun" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text v2raytun-fallback" style="display:none;">T</span>
-                        </div>
-                        <h3>V2rayTun</h3>
-                    </div>
-                    <div class="app-card" onclick="goToStep(2, 'hiddify')">
-                        <div class="app-icon">
-                            <img src="hiddify.png" alt="Hiddify" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <span class="fallback-text hiddify-fallback" style="display:none;">H</span>
-                        </div>
-                        <h3>Hiddify</h3>
-                    </div>
-                </div>
-            </section>
+/* КАПЧА */
+.captcha-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px; /* Больше воздуха */
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
 
-            <!-- Шаг 2: Скачивание -->
-            <section id="step-2" class="step">
-                <button class="back-btn" onclick="goToStep(1)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                    <span>Назад</span>
-                </button>
-                <div class="content-box">
-                    <h2 id="step-2-title">Скачайте приложение</h2>
-                    <p class="desc">Установи клиент на устройство.</p>
-                    
-                    <a href="#" id="download-link" target="_blank" rel="noopener" class="btn btn-primary">Скачать</a>
-                    
-                    <p id="step-2-note" style="display: none; color: var(--text-muted); font-size: 13px; margin-top: 8px; margin-bottom: 0;"></p>
-                    
-                    <button onclick="goToStep(3)" class="btn btn-secondary mt-24">Далее</button>
-                </div>
-            </section>
+.captcha-title { color: var(--text-muted); text-align: center; font-size: 14px; margin-bottom: 12px; }
+.captcha-target { text-align: center; font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 32px; min-height: 30px; transition: color 0.2s; }
 
-            <!-- Шаг 3: Импорт -->
-            <section id="step-3" class="step">
-                <button class="back-btn" onclick="goToStep(2, currentApp)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                    <span>Назад</span>
-                </button>
-                <div class="content-box">
-                    <h2>Импорт подписки</h2>
-                    <p class="desc">Нажми кнопку. Конфигурация добавится автоматически.</p>
-                    <a href="#" id="import-link" class="btn btn-primary">Импортировать</a>
-                    
-                    <div class="manual-copy mt-24">
-                        <p class="small-text">Если кнопка не сработала, скопируй ссылку вручную:</p>
-                        <div class="copy-box">
-                            <input type="text" id="sub-url" value="https://clck.ru/3Wnqdy" readonly>
-                            <button onclick="copyLink()" id="copy-btn">Копировать</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
-            <footer>
-                <a href="https://t.me/OmnivexVPN" target="_blank" rel="noopener" class="tg-link">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Наш Telegram-канал
-                </a>
-            </footer>
-        </div>
-    </main>
-    <script src="script.js"></script>
-</body>
-</html>
+.card {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-md);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+}
+.card:hover { background: var(--surface-hover); border-color: #444; }
+.card:active { transform: scale(0.98); }
+.card svg { width: 50%; height: 50%; display: block; pointer-events: none; }
+.card.wrong { background: rgba(239, 68, 68, 0.1); border-color: var(--danger); }
+.card.correct { background: rgba(29, 185, 84, 0.1); border-color: var(--accent); }
+
+.attempts { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+.dot.used { background: var(--danger); }
+
+.hint { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-muted); }
+.hint.error { color: var(--danger); }
+
+.overlay {
+    position: absolute; inset: 0; background: var(--surface);
+    border-radius: var(--radius-lg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10;
+}
+.overlay.show { opacity: 1; pointer-events: auto; }
+.result-circle { width: 64px; height: 64px; }
+.result-circle svg { width: 100%; height: 100%; }
+.result-text { font-size: 16px; font-weight: 500; text-align: center; }
+.restart { background: var(--surface-hover); border: 1px solid var(--border); color: var(--text); padding: 8px 20px; border-radius: var(--radius-sm); cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 500; }
+.restart:hover { background: var(--border); }
+
+/* ОСНОВНОЙ САЙТ */
+.hero { text-align: center; margin-bottom: 40px; }
+.logo-wrapper { width: 80px; height: 80px; margin: 0 auto 20px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); }
+.logo { width: 100%; height: 100%; object-fit: cover; }
+.logo-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 600; background: var(--surface); color: var(--accent); }
+
+h1 { font-size: 28px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.5px; }
+.description { color: var(--text-muted); font-size: 15px; line-height: 1.5; margin: 0 auto 28px; max-width: 95%; }
+.subtitle { color: var(--text); font-size: 14px; font-weight: 500; margin-top: 20px; }
+
+.step { display: none; width: 100%; }
+.step.active { display: block; }
+
+.card-grid { display: flex; flex-direction: column; gap: 12px; }
+
+.app-card {
+    position: relative;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; /* Больше отступов */
+    cursor: pointer; transition: background 0.15s, border-color 0.15s;
+    display: flex; flex-direction: row; align-items: center; gap: 20px;
+}
+.app-card:hover { background: var(--surface-hover); border-color: rgba(29, 185, 84, 0.4); }
+.app-card:active { transform: scale(0.99); }
+
+.badge {
+    position: absolute; top: 14px; right: 14px;
+    color: var(--accent); font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px; pointer-events: none;
+}
+
+/* Убрали фон у иконок, чтобы не было "плиток" */
+.app-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); display: flex; justify-content: center; align-items: center; overflow: hidden; flex-shrink: 0; }
+.app-icon img { width: 100%; height: 100%; object-fit: contain; }
+.app-icon .fallback-text { font-size: 18px; font-weight: 600; color: var(--text-muted); }
+
+.app-card h3 { font-size: 16px; font-weight: 500; margin: 0; }
+
+.btn {
+    display: inline-flex; justify-content: center; align-items: center;
+    padding: 14px 24px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600;
+    text-decoration: none; cursor: pointer; border: none; transition: background 0.15s;
+    width: 100%; font-family: inherit;
+}
+
+.btn-primary { background: var(--neon-lime); color: #000; }
+.btn-primary:hover { background: #d4ff4d; }
+
+.btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--surface-hover); border-color: rgba(29, 185, 84, 0.4); }
+
+.mt-24 { margin-top: 24px; }
+
+.content-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; width: 100%; }
+.content-box h2 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+.content-box .desc { color: var(--text-muted); font-size: 15px; margin-bottom: 28px; }
+
+.back-btn {
+    background: none; border: none; color: var(--text-muted); font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 20px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 0;
+}
+.back-btn:hover { color: var(--text); }
+.back-btn svg { width: 16px; height: 16px; }
+
+.manual-copy { border-top: 1px solid var(--border); padding-top: 20px; text-align: left; }
+.small-text { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.copy-box { display: flex; background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.copy-box input { background: transparent; border: none; padding: 12px 14px; color: var(--text-muted); font-size: 13px; flex: 1; outline: none; font-family: monospace; }
+.copy-box button { background: var(--surface-hover); border: none; border-left: 1px solid var(--border); color: var(--accent); padding: 0 18px; cursor: pointer; font-size: 13px; font-weight: 500; }
+.copy-box button:hover { background: var(--border); }
+
+footer { margin-top: 40px; text-align: center; padding-bottom: 24px; }
+.tg-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.tg-link:hover { color: var(--accent); }
+
+@media (max-width: 360px) {
+    .container { padding: 24px 16px; }
+    .content-box { padding: 24px 16px; }
+}
