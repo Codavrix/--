@@ -1,11 +1,11 @@
 :root {
-    /* Фон стал заметно светлее и насыщеннее */
-    --bg: #0F1712; 
-    --surface: #18241D;
-    --surface-hover: #213229;
+    /* Осветленный фон, чтобы глаза не уставали */
+    --bg: #1A1F1C; 
+    --surface: #232925;
+    --surface-hover: #2D342F;
     --border: rgba(255, 255, 255, 0.12);
-    --text: #ffffff;
-    --text-muted: #b2c4b7; /* Текст светлее для контраста */
+    --text: #f0f2f0;
+    --text-muted: #9ca89e; /* Более светлый серый для контраста */
     --accent: #1db954;
     --neon-lime: #bfff00;
     --danger: #ef4444;
@@ -176,4 +176,4 @@ footer { margin-top: 40px; text-align: center; padding-bottom: 24px; }
 @media (max-width: 360px) {
     .container { padding: 24px 16px; }
     .content-box { padding: 24px 16px; }
-}
+    }
