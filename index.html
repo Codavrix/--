@@ -17,6 +17,22 @@
   <div class="ambient ambient-one"></div>
   <div class="ambient ambient-two"></div>
   <main class="shell">
+    <section class="captcha-screen" id="captcha-screen">
+      <div class="captcha-panel">
+        <div class="captcha-brand">OMNIVEX <span>SECURITY CHECK</span></div>
+        <p class="captcha-prompt">Выберите и нажмите на</p>
+        <h2 id="captcha-target">Щит</h2>
+        <div class="captcha-grid" id="captcha-grid"></div>
+        <div class="captcha-attempts" id="captcha-attempts"><i></i><i></i><i></i></div>
+        <p class="captcha-hint" id="captcha-hint">У вас 3 попытки</p>
+        <div class="captcha-overlay" id="captcha-overlay">
+          <div class="captcha-result-icon" id="captcha-result-icon"></div>
+          <strong id="captcha-result-text"></strong>
+          <button type="button" id="captcha-restart" hidden>Попробовать снова</button>
+        </div>
+      </div>
+    </section>
+    <div id="site-content" hidden>
     <header class="topbar">
       <a class="brand" href="#" aria-label="Omnivex — главная">
         <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -26,10 +42,8 @@
     </header>
 
     <section class="hero">
-      <div class="eyebrow"><span class="status-dot"></span> OMNIVEX CONNECTION</div>
-      <h1>Интернет.<br><span>Без лишнего.</span></h1>
-      <p class="hero-copy">Подключение к Omnivex займёт всего пару минут. Выберите приложение, установите его и добавьте подписку.</p>
-      <div class="hero-meta"><span class="meta-line"></span><span>ПРОСТО · БЫСТРО · УДОБНО</span></div>
+      <h1 class="brand-title">Omni<span>vex</span></h1>
+      <p class="hero-copy">Выберите приложение для подключения.</p>
     </section>
 
     <section class="setup" aria-label="Настройка подключения">
@@ -40,27 +54,27 @@
       <div class="progress-track"><span id="progress-fill"></span></div>
 
       <section class="step active" id="step-1">
-        <div class="step-heading"><span class="step-number">01</span><div><h3>Выберите приложение</h3><p>Выберите клиент, который хотите использовать.</p></div></div>
+        <div class="step-heading"><span class="step-number">01</span><div><h3>Выберите приложение</h3></div></div>
         <div class="app-grid">
           <button class="app-card featured" type="button" data-app="happ">
             <span class="recommended">Рекомендуем</span><span class="app-icon"><img src="happ.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>H</b></span>
-            <span class="app-info"><strong>Happ</strong><small>Простой старт</small></span><span class="card-arrow">↗</span>
+            <span class="app-info"><strong>Happ</strong></span><span class="card-arrow">↗</span>
           </button>
           <button class="app-card" type="button" data-app="incy">
             <span class="app-icon"><img src="incy.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>I</b></span>
-            <span class="app-info"><strong>Incy</strong><small>Для Android</small></span><span class="card-arrow">↗</span>
+            <span class="app-info"><strong>Incy</strong></span><span class="card-arrow">↗</span>
           </button>
-          <button class="app-card" type="button" data-app="v2rayng">
+          <button class="app-card featured" type="button" data-app="v2rayng">\n            <span class="recommended">Рекомендуем</span>
             <span class="app-icon"><img src="v2rayng.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>V</b></span>
-            <span class="app-info"><strong>V2rayNG</strong><small>Гибкие настройки</small></span><span class="card-arrow">↗</span>
+            <span class="app-info"><strong>V2rayNG</strong></span><span class="card-arrow">↗</span>
           </button>
           <button class="app-card" type="button" data-app="v2raytun">
             <span class="app-icon"><img src="v2raytun.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>T</b></span>
-            <span class="app-info"><strong>V2rayTun</strong><small>Альтернативный клиент</small></span><span class="card-arrow">↗</span>
+            <span class="app-info"><strong>V2rayTun</strong></span><span class="card-arrow">↗</span>
           </button>
           <button class="app-card" type="button" data-app="hiddify">
             <span class="app-icon"><img src="hiddify.png" alt="" onerror="this.parentElement.classList.add('fallback');this.remove()"><b>H</b></span>
-            <span class="app-info"><strong>Hiddify</strong><small>Универсальный клиент</small></span><span class="card-arrow">↗</span>
+            <span class="app-info"><strong>Hiddify</strong></span><span class="card-arrow">↗</span>
           </button>
         </div>
       </section>
@@ -91,12 +105,12 @@
             <div class="copy-row"><input id="sub-url" type="text" value="https://clck.ru/3Wnqdy" readonly><button id="copy-btn" type="button">Копировать</button></div>
             <span class="copy-feedback" id="copy-feedback" aria-live="polite"></span>
           </div>
-          <div class="success-note"><span>✓</span><p>Готово! После импорта откройте приложение и включите подключение.</p></div>
         </div>
       </section>
     </section>
 
     <footer class="footer"><span>© OMNIVEX</span><a href="https://t.me/OmnivexVPN" target="_blank" rel="noopener">Поддержка в Telegram ↗</a><span class="footer-tag">BY CODAVRIX</span></footer>
+    </div>
   </main>
   <script src="script.js"></script>
 </body>
