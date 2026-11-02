@@ -1,5 +1,90 @@
 const SUB_URL = "https://clck.ru/3Wnqdy";
 
+// Simple visual entry check (client-side only; not server-side security).
+const CAPTCHA_ICONS = {
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  lightning: '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>',
+  globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>',
+  lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  key: '<circle cx="8" cy="15" r="5"/><path d="m12 11 9-9m-4 4 3 3m-6 0 3 3"/>',
+  wifi: '<path d="M2 8a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0m-11 4a6 6 0 0 1 6 0"/><path d="M12 20h.01"/>',
+  eye: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>'
+};
+const CAPTCHA_NAMES = {shield:"Щит",lightning:"Молнию",globe:"Глобус",lock:"Замок",key:"Ключ",wifi:"Wi-Fi",eye:"Глаз"};
+const captchaGrid = document.getElementById("captcha-grid");
+const captchaTarget = document.getElementById("captcha-target");
+const captchaOverlay = document.getElementById("captcha-overlay");
+const captchaHint = document.getElementById("captcha-hint");
+const captchaDots = document.querySelectorAll("#captcha-attempts i");
+let captchaAnswer = "";
+let captchaLeft = 3;
+let captchaLocked = false;
+
+function shuffleItems(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+function captchaSvg(key) {
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="#b7f36b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + CAPTCHA_ICONS[key] + '</svg>';
+}
+function initCaptcha() {
+  captchaLeft = 3;
+  captchaLocked = false;
+  captchaOverlay.classList.remove("show");
+  document.getElementById("captcha-restart").hidden = true;
+  captchaHint.textContent = "У вас 3 попытки";
+  captchaHint.classList.remove("error");
+  captchaDots.forEach(dot => dot.classList.remove("used"));
+  const keys = shuffleItems(Object.keys(CAPTCHA_ICONS));
+  captchaAnswer = keys[0];
+  captchaTarget.textContent = CAPTCHA_NAMES[captchaAnswer];
+  captchaGrid.innerHTML = "";
+  shuffleItems(keys.slice(0, 6)).forEach(key => {
+    const tile = document.createElement("button");
+    tile.type = "button";
+    tile.className = "captcha-tile";
+    tile.setAttribute("aria-label", CAPTCHA_NAMES[key] || key);
+    tile.innerHTML = captchaSvg(key);
+    tile.addEventListener("click", () => pickCaptcha(tile, key));
+    captchaGrid.appendChild(tile);
+  });
+}
+function captchaResult(success) {
+  captchaLocked = true;
+  document.getElementById("captcha-result-icon").innerHTML = success
+    ? '<svg viewBox="0 0 60 60" fill="none" stroke="#b7f36b" stroke-width="2.5"><circle cx="30" cy="30" r="25"/><path d="m17 30 9 9 18-20" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    : '<svg viewBox="0 0 60 60" fill="none" stroke="#ef6969" stroke-width="2.5"><circle cx="30" cy="30" r="25"/><path d="m20 20 20 20m0-20L20 40" stroke-linecap="round"/></svg>';
+  document.getElementById("captcha-result-text").textContent = success ? "Проверка пройдена" : "Попытки закончились";
+  document.getElementById("captcha-restart").hidden = success;
+  captchaOverlay.classList.add("show");
+  if (success) {
+    window.setTimeout(() => {
+      document.getElementById("captcha-screen").hidden = true;
+      document.getElementById("site-content").hidden = false;
+    }, 850);
+  }
+}
+function pickCaptcha(tile, key) {
+  if (captchaLocked || tile.classList.contains("wrong")) return;
+  if (key === captchaAnswer) {
+    tile.classList.add("correct");
+    captchaResult(true);
+    return;
+  }
+  tile.classList.add("wrong");
+  captchaLeft--;
+  captchaDots[captchaLeft].classList.add("used");
+  captchaHint.textContent = captchaLeft ? "Неверно. Осталось: " + captchaLeft : "Попытки закончились";
+  captchaHint.classList.add("error");
+  if (!captchaLeft) window.setTimeout(() => captchaResult(false), 450);
+}
+document.getElementById("captcha-restart").addEventListener("click", initCaptcha);
+initCaptcha();
+
 const apps = {
   happ: {
     name: "Happ",
